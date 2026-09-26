@@ -1,0 +1,82 @@
+:root {
+  --ink: #1c1612;
+  --paper: #f3eadc;
+  --paper-2: #e8dcc8;
+  --rule: #c9b49a;
+  --copper: #c45c26;
+  --mute: #6e5c4a;
+  --ok: #2d5a3d;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+  opacity: .55;
+  z-index: 0;
+}
+.wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 28px 22px 80px; }
+header.top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  border-bottom: 1px solid var(--rule); padding-bottom: 18px; margin-bottom: 28px;
+}
+.mark { font-family: Fraunces, Georgia, serif; font-size: 28px; letter-spacing: -.02em; }
+.mark em { font-style: italic; color: var(--copper); font-weight: 400; }
+.clock { font-variant-numeric: tabular-nums; color: var(--mute); font-size: 13px; }
+.mast {
+  display: grid; grid-template-columns: 1fr 220px; gap: 36px; margin-bottom: 40px;
+  animation: rise .7s ease both;
+}
+@media (max-width: 740px) { .mast { grid-template-columns: 1fr; } }
+.kicker { text-transform: uppercase; letter-spacing: .16em; font-size: 11px; color: var(--copper); }
+h1.ed { font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: clamp(32px, 5vw, 54px); line-height: 1.05; margin: 8px 0 14px; }
+.ed-body { font-size: 18px; line-height: 1.55; max-width: 38em; }
+.hour-card {
+  border: 1px solid var(--rule); background: var(--paper-2); padding: 16px 18px;
+  animation: drift 8s ease-in-out infinite;
+}
+.hour-card small { color: var(--mute); display: block; margin-bottom: 6px; }
+.grid { display: grid; grid-template-columns: 1.4fr .9fr; gap: 32px; }
+@media (max-width: 740px) { .grid { grid-template-columns: 1fr; } }
+h2 { font-family: Fraunces, Georgia, serif; font-weight: 400; font-size: 22px; margin: 0 0 14px; }
+.thread {
+  border-top: 1px solid var(--rule); padding: 16px 0;
+  animation: rise .6s ease both;
+}
+.thread h3 { margin: 0 0 6px; font-size: 18px; font-family: Fraunces, Georgia, serif; font-weight: 400; }
+.meta { color: var(--mute); font-size: 12px; margin-bottom: 8px; }
+.thread p { margin: 0; white-space: pre-wrap; line-height: 1.5; }
+form.desk { display: flex; flex-direction: column; gap: 10px; }
+input, textarea {
+  font: inherit; background: #fffaf3; border: 1px solid var(--rule); color: var(--ink);
+  padding: 10px 12px; border-radius: 2px; width: 100%;
+}
+textarea { min-height: 140px; resize: vertical; }
+button {
+  font: inherit; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+  padding: 9px 14px; border-radius: 2px;
+}
+button.ghost { background: transparent; color: var(--ink); }
+button:hover { transform: translateY(-1px); }
+row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+label.check { font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.err { color: #8b2a1a; font-size: 13px; }
+.ok { color: var(--ok); font-size: 13px; }
+.auth { display: flex; flex-direction: column; gap: 8px; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.loom-line {
+  height: 2px; width: 100%; background: linear-gradient(90deg, transparent, var(--copper), transparent);
+  margin: 8px 0 22px; animation: sweep 3.2s ease-in-out infinite;
+  transform-origin: left;
+}
+@keyframes sweep { 0% { opacity: .2; transform: scaleX(.2); } 50% { opacity: 1; transform: scaleX(1); } 100% { opacity: .2; transform: scaleX(.2); } }
